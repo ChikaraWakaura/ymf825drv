@@ -11,15 +11,15 @@ S1 盛りがクラック、ボイドなしか目視確認不能ですので気�
 ラズパイとの配線は以下のとおりです。
 
 ymf825board    Raspi  
-1 SS    ------ 22 GPIO25  
-2 MOSI  ------ 19 GPIO10 SPI0 MOSI  
-3 MISO  ------ 21 GPIO 9 SPI0 MISO  
-4 SCK   ------ 23 GPIO11 SPI0 SCLK  
-5 GND   ------  6 GND  
-6 5V    ------  2 VCC(+5V)  
+1 SS --------- 22 GPIO25  
+2 MOSI ------- 19 GPIO10 SPI0 MOSI  
+3 MISO ------- 21 GPIO 9 SPI0 MISO  
+4 SCK -------- 23 GPIO11 SPI0 SCLK  
+5 GND --------  6 GND  
+6 5V ---------  2 VCC(+5V)  
 7 RST_N ------ 36 GPIO16  
 8 Audio ------ NC  
-9 3.3V  ------  1 VCC(+3.3V)  
+9 3.3V -------  1 VCC(+3.3V)  
 
 ブレッドボードで基礎的動作確認が終わりましたので他実験で使用していた秋月ユニバーサル基板を
 一度フリーにしてから配置、配線しました。
