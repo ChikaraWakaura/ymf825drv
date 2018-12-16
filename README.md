@@ -29,93 +29,93 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
 
 # 3.ソフト機能拡張及び変更について
 
- 16ch                      対応(ChNo.9 は非標準ドラムパート)
- CC7                       MASTER VOL -> ChVol に変更
- CC11                      対応
- CC121                     対応
- CC120                     対応
- CC123                     対応
+    16ch                      対応(ChNo.9 は非標準ドラムパート)
+    CC7                       MASTER VOL -> ChVol に変更
+    CC11                      対応
+    CC121                     対応
+    CC120                     対応
+    CC123                     対応
 
- fmasgn.c                  変更なし
- fmif.c
-   Fmdriver_init()         本タイミングへ Asgn_init() と Tone_init() を移動(CC121に関連)
-                           16ch 初期化処理へ変更
-   generateMidiCmd()       16ch 処理へ変更
- fmnote.c
-   Note_damp()             16ch 化に伴いリンクリスト破壊後のリンクはまり対策
-   Note_chgChVol()         追加
-   Note_chgExpression()    追加
- fmpart.c
-   Part_cc11()             追加
-   Part_init()             Asgn_init() と Tone_init() を削除(CC121に関連)
-   Part_cc()               CC7 変更, CC11,CC121,CC120,CC123 追加
- fmsd1_raspi.c
-   writeSingle()           bcm2835_spi_transfern() へ変更
-   readSingle()            追加
-   writeBurst()            bcm2835_spi_transfern() へ変更
-   delayMs()               秒込みウェイト指定化へ変更
-   initSPI()               RST ピン出力定義追加
-   initSD1()               9,25 レジスタ書き込み定義見直しと変数化
- fmtone.c                  変更なし
- fmvoice.c
-   Fmvoice_keyon()         VoVOL 設定見直し , ChVol CC7 化 , Part_toneNumber() 設定見直し
-   Fmvoice_damp()          16ch 化に伴いリンクリスト破壊後のリンクはまり対策
-   Fmvoice_chgVibDpt()     XVB 設定見直し
-   Fmvoice_chgChVol()      CC7  対応(ChVol 利用のため CC11 とレジスタ共有)
-   Fmvoice_chgExpression() CC11 対応(ChVol 利用のため CC7  とレジスタ共有)
- ymf825drv.c               新規
- fmasgn.h                  変更なし
- fmboard.h                 変更なし
- fmif.h                    マクロ追加
- fmnote.h                  プロトタイプ宣言追加
- fmpart.h                  プロトタイプ宣言追加
- fmsd1.h                   プロトタイプ宣言追加
- fmtone.h                  変更なし
- fmtype.h                  変更なし
- fmvoice.h                 プロトタイプ宣言追加
+    fmasgn.c                  変更なし
+    fmif.c
+      Fmdriver_init()         本タイミングへ Asgn_init() と Tone_init() を移動(CC121に関連)
+                              16ch 初期化処理へ変更
+      generateMidiCmd()       16ch 処理へ変更
+    fmnote.c
+      Note_damp()             16ch 化に伴いリンクリスト破壊後のリンクはまり対策
+      Note_chgChVol()         追加
+      Note_chgExpression()    追加
+    fmpart.c
+      Part_cc11()             追加
+      Part_init()             Asgn_init() と Tone_init() を削除(CC121に関連)
+      Part_cc()               CC7 変更, CC11,CC121,CC120,CC123 追加
+    fmsd1_raspi.c
+      writeSingle()           bcm2835_spi_transfern() へ変更
+      readSingle()            追加
+      writeBurst()            bcm2835_spi_transfern() へ変更
+      delayMs()               秒込みウェイト指定化へ変更
+      initSPI()               RST ピン出力定義追加
+      initSD1()               9,25 レジスタ書き込み定義見直しと変数化
+    fmtone.c                  変更なし
+    fmvoice.c
+      Fmvoice_keyon()         VoVOL 設定見直し , ChVol CC7 化 , Part_toneNumber() 設定見直し
+      Fmvoice_damp()          16ch 化に伴いリンクリスト破壊後のリンクはまり対策
+      Fmvoice_chgVibDpt()     XVB 設定見直し
+      Fmvoice_chgChVol()      CC7  対応(ChVol 利用のため CC11 とレジスタ共有)
+      Fmvoice_chgExpression() CC11 対応(ChVol 利用のため CC7  とレジスタ共有)
+    ymf825drv.c               新規
+    fmasgn.h                  変更なし
+    fmboard.h                 変更なし
+    fmif.h                    マクロ追加
+    fmnote.h                  プロトタイプ宣言追加
+    fmpart.h                  プロトタイプ宣言追加
+    fmsd1.h                   プロトタイプ宣言追加
+    fmtone.h                  変更なし
+    fmtype.h                  変更なし
+    fmvoice.h                 プロトタイプ宣言追加
 
 # 4.動作確認
 
 SPI を必要とします。
 
-$ cat /boot/config.txt | grep spi
-dtparam=spi=on
+    $ cat /boot/config.txt | grep spi
+    dtparam=spi=on
 
 libbcm2835 を必要とします。
 
-$ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.57.tar.gz
-$ tar zxvf bcm2835-1.57.tar.gz
-$ cd bcm2835-1.57/
-$ ./configure
-$ make
-$ sudo make install
+    $ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.57.tar.gz
+    $ tar zxvf bcm2835-1.57.tar.gz
+    $ cd bcm2835-1.57/
+    $ ./configure
+    $ make
+    $ sudo make install
 
 libasound2-dev を必要とします。
 
-$ sudo apt-get update
-$ sudo apt-get install libasound2-dev
+    $ sudo apt-get update
+    $ sudo apt-get install libasound2-dev
 
 メイクと実行
 
 本リポジトリを展開します。
 
-$ cd ymf825drv
-$ make clean;make
-$ sudo ./ymf825drv -v
-Initialize SPI.
-Initialize YMF825.
-Dump YMF825 Register
-     : +0 +1 +2 +3 +4 +5 +6 +7 +8 +9
-0000 : 01 00 00 01 01 00 00 00 00 84
-0010 : 00 00 00 00 00 00 00 00 00 00
-0020 : 00 00 00 00 00 CC 00 3F 00 01
-YMF825 Communication checking...
-YMF825 Communication check complete.
-Initialize FM Driver.
-YMF825 MIDI Driver Version 0.1.0 ready.
-ALSA MIDI Port(128:0) 'YMF825 MIDI' ready.
-Enable MIDI Channel. 0123456789ABCDEF
-                     1111111110111111
+    $ cd ymf825drv
+    $ make clean;make
+    $ sudo ./ymf825drv -v
+    Initialize SPI.
+    Initialize YMF825.
+    Dump YMF825 Register
+         : +0 +1 +2 +3 +4 +5 +6 +7 +8 +9
+    0000 : 01 00 00 01 01 00 00 00 00 84
+    0010 : 00 00 00 00 00 00 00 00 00 00
+    0020 : 00 00 00 00 00 CC 00 3F 00 01
+    YMF825 Communication checking...
+    YMF825 Communication check complete.
+    Initialize FM Driver.
+    YMF825 MIDI Driver Version 0.1.0 ready.
+    ALSA MIDI Port(128:0) 'YMF825 MIDI' ready.
+    Enable MIDI Channel. 0123456789ABCDEF
+                         1111111110111111
 
 上記のような表示が出て待機になると OK です。
 Ctrl + C で停止します。
@@ -123,31 +123,31 @@ Ctrl + C で停止します。
 
 レジスタダンプ値違いまたは以下の表示の場合は配線再確認、電圧、電流確認です。
 
-YMF825 Communication checking...
-R/W Failed : Write(xx) Read(yy)
+    YMF825 Communication checking...
+    R/W Failed : Write(xx) Read(yy)
 
 他ターミナルより以下コマンドにて YMF825 MIDI ポートの存在確認が出来ます。
 
-$ aplaymidi -l
- Port    Client name                      Port name
- 14:0    Midi Through                     Midi Through Port-0
-128:0    YMF825 MIDI                      YMF825 MIDI
+    $ aplaymidi -l
+     Port    Client name                      Port name
+     14:0    Midi Through                     Midi Through Port-0
+    128:0    YMF825 MIDI                      YMF825 MIDI
 
 ポートとファイル指定にて MIDI 再生可能です。
 
-$ aplaymidi --port=128:0 hogehoge.mid
+    $ aplaymidi --port=128:0 hogehoge.mid
 
 #5.応用編
 
 raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
 
-$ sudo modprobe snd-virmidi
-$ amidi -l
-Dir Device    Name
-IO  hw:0,0    Virtual Raw MIDI (16 subdevices)
-IO  hw:0,1    Virtual Raw MIDI (16 subdevices)
-IO  hw:0,2    Virtual Raw MIDI (16 subdevices)
-IO  hw:0,3    Virtual Raw MIDI (16 subdevices)
+    $ sudo modprobe snd-virmidi
+    $ amidi -l
+    Dir Device    Name
+    IO  hw:0,0    Virtual Raw MIDI (16 subdevices)
+    IO  hw:0,1    Virtual Raw MIDI (16 subdevices)
+    IO  hw:0,2    Virtual Raw MIDI (16 subdevices)
+    IO  hw:0,3    Virtual Raw MIDI (16 subdevices)
 
 $ aplaymidi -l
  Port    Client name                      Port name
