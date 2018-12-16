@@ -1,9 +1,9 @@
-# 1.概要
+# 1. 概要
 
 本家 sample2 の 1ch MIDI ドライバをラズパイ向け ALSA 16ch MIDI ドライバ(ユーザランド)化するものです。
 標準ドラムパート MIDI ChNo.9(0基点) は通常音色です。
 
-# 2.ハード準備
+# 2. ハード準備
 
 最大の難問が R0 剥がし S1 盛りです。
 S1 盛りがクラック、ボイドなしか目視確認不能ですので気合い入れます(笑)
@@ -27,7 +27,7 @@ S1 盛りがクラック、ボイドなしか目視確認不能ですので気�
 ymf825board に付属しているミニジャックは 100 回抜き差し試験に耐えられそうない感じ(笑)
 なので RCA 端子より疑似ステレオ出力としました。
 
-# 3.ソフト機能拡張及び変更について
+# 3. ソフト機能拡張及び変更について
 
     16ch                      対応(ChNo.9 は非標準ドラムパート)
     CC7                       MASTER VOL -> ChVol に変更
@@ -74,7 +74,7 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
     fmtype.h                  変更なし
     fmvoice.h                 プロトタイプ宣言追加
 
-# 4.動作確認
+# 4. 動作確認
 
 SPI を必要とします。
 
@@ -137,7 +137,7 @@ Ctrl + C で停止します。
 
     $ aplaymidi --port=128:0 hogehoge.mid
 
-#5.応用編
+#5. 応用編
 
 raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
 
@@ -149,52 +149,52 @@ raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
     IO  hw:0,2    Virtual Raw MIDI (16 subdevices)
     IO  hw:0,3    Virtual Raw MIDI (16 subdevices)
 
-$ aplaymidi -l
- Port    Client name                      Port name
- 14:0    Midi Through                     Midi Through Port-0
- 16:0    Virtual Raw MIDI 0-0             VirMIDI 0-0
- 17:0    Virtual Raw MIDI 0-1             VirMIDI 0-1
- 18:0    Virtual Raw MIDI 0-2             VirMIDI 0-2
- 19:0    Virtual Raw MIDI 0-3             VirMIDI 0-3
-128:0    YMF825 MIDI                      YMF825 MIDI
+    $ aplaymidi -l
+     Port    Client name                      Port name
+     14:0    Midi Through                     Midi Through Port-0
+     16:0    Virtual Raw MIDI 0-0             VirMIDI 0-0
+     17:0    Virtual Raw MIDI 0-1             VirMIDI 0-1
+     18:0    Virtual Raw MIDI 0-2             VirMIDI 0-2
+     19:0    Virtual Raw MIDI 0-3             VirMIDI 0-3
+    128:0    YMF825 MIDI                      YMF825 MIDI
 
 ポートを aconnect にて接続させます。
 
-$ aconnect -x;aconnect 16:0 128:0;aconnect -l
-client 0: 'System' [type=kernel]
-    0 'Timer           '
-    1 'Announce        '
-client 14: 'Midi Through' [type=kernel]
-    0 'Midi Through Port-0'
-client 16: 'Virtual Raw MIDI 0-0' [type=kernel,card=0]
-    0 'VirMIDI 0-0     '
-        Connecting To: 128:0
-client 17: 'Virtual Raw MIDI 0-1' [type=kernel,card=0]
-    0 'VirMIDI 0-1     '
-client 18: 'Virtual Raw MIDI 0-2' [type=kernel,card=0]
-    0 'VirMIDI 0-2     '
-client 19: 'Virtual Raw MIDI 0-3' [type=kernel,card=0]
+    $ aconnect -x;aconnect 16:0 128:0;aconnect -l
+    client 0: 'System' [type=kernel]
+        0 'Timer           '
+        1 'Announce        '
+    client 14: 'Midi Through' [type=kernel]
+        0 'Midi Through Port-0'
+    client 16: 'Virtual Raw MIDI 0-0' [type=kernel,card=0]
+        0 'VirMIDI 0-0     '
+            Connecting To: 128:0
+    client 17: 'Virtual Raw MIDI 0-1' [type=kernel,card=0]
+        0 'VirMIDI 0-1     '
+    client 18: 'Virtual Raw MIDI 0-2' [type=kernel,card=0]
+        0 'VirMIDI 0-2     '
+    client 19: 'Virtual Raw MIDI 0-3' [type=kernel,card=0]
     0 'VirMIDI 0-3     '
-client 128: 'YMF825 MIDI' [type=user,pid=803]
-    0 'YMF825 MIDI     '
-        Connected From: 16:0
+    client 128: 'YMF825 MIDI' [type=user,pid=803]
+        0 'YMF825 MIDI     '
+            Connected From: 16:0
 
 以下のようなファイルを ~/.config に準備します。
 
-$ cat ~/.config/raveloxmidi-vmidi.conf
-service.name = ymf825
-file_mode = 0666
-inbound_midi = /dev/null
-alsa.output_device = hw:0,0,0
+    $ cat ~/.config/raveloxmidi-vmidi.conf
+    service.name = ymf825
+    file_mode = 0666
+    inbound_midi = /dev/null
+    alsa.output_device = hw:0,0,0
 
 raveloxmidi ファイル指定実行
 
-$ raveloxmidi -N -c ~/.config/raveloxmidi-vmidi.conf
+    $ raveloxmidi -N -c ~/.config/raveloxmidi-vmidi.conf
 
 これで rtpMIDI が動作する環境より任意の MIDI 再生ソフトからの MIDI 再生が可能になり
 YMF825 MIDI へ MIDI 出力可能となります。
 
-# 6.その他
+# 6. その他
 
 YMF825-MIDI.xml は Domino 向けファイルです。利用される場合は Domino\Module へ
 ファイルコピーして Domino 環境設定より選択利用下さい。
