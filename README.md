@@ -1,26 +1,26 @@
 # ymf825drv
-1.概要
+#1.概要
 
 本家 sample2 の 1ch MIDI ドライバをラズパイ向け ALSA 16ch MIDI ドライバ(ユーザランド)化するものです。
 標準ドラムパート MIDI ChNo.9(0基点) は通常音色です。
 
-2.ハード準備
+#2.ハード準備
 
 最大の難問が R0 剥がし S1 盛りです。
 S1 盛りがクラック、ボイドなしか目視確認不能ですので気合い入れます(笑)
 
 ラズパイとの配線は以下のとおりです。
 
-ymf825board     Raspi
- 1 SS    ------ 22 GPIO25
- 2 MOSI  ------ 19 GPIO10 SPI0 MOSI
- 3 MISO  ------ 21 GPIO 9 SPI0 MISO
- 4 SCK   ------ 23 GPIO11 SPI0 SCLK
- 5 GND   ------  6 GND
- 6 5V    ------  2 VCC(+5V)
- 7 RST_N ------ 36 GPIO16
- 8 Audio ------ NC
- 9 3.3V  ------  1 VCC(+3.3V)
+ymf825board    Raspi
+1 SS    ------ 22 GPIO25
+2 MOSI  ------ 19 GPIO10 SPI0 MOSI
+3 MISO  ------ 21 GPIO 9 SPI0 MISO
+4 SCK   ------ 23 GPIO11 SPI0 SCLK
+5 GND   ------  6 GND
+6 5V    ------  2 VCC(+5V)
+7 RST_N ------ 36 GPIO16
+8 Audio ------ NC
+9 3.3V  ------  1 VCC(+3.3V)
 
 ブレッドボードで基礎的動作確認が終わりましたので他実験で使用していた秋月ユニバーサル基板を
 一度フリーにしてから配置、配線しました。
@@ -28,7 +28,7 @@ ymf825board     Raspi
 ymf825board に付属しているミニジャックは 100 回抜き差し試験に耐えられそうない感じ(笑)
 なので RCA 端子より疑似ステレオ出力としました。
 
-3.ソフト機能拡張及び変更について
+#3.ソフト機能拡張及び変更について
 
  16ch                      対応(ChNo.9 は非標準ドラムパート)
  CC7                       MASTER VOL -> ChVol に変更
@@ -75,7 +75,7 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
  fmtype.h                  変更なし
  fmvoice.h                 プロトタイプ宣言追加
 
-4.動作確認
+#4.動作確認
 
 SPI を必要とします。
 
@@ -138,7 +138,7 @@ $ aplaymidi -l
 
 $ aplaymidi --port=128:0 hogehoge.mid
 
-5.応用編
+#5.応用編
 
 raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
 
@@ -195,7 +195,7 @@ $ raveloxmidi -N -c ~/.config/raveloxmidi-vmidi.conf
 これで rtpMIDI が動作する環境より任意の MIDI 再生ソフトからの MIDI 再生が可能になり
 YMF825 MIDI へ MIDI 出力可能となります。
 
-6.その他
+#6.その他
 
 YMF825-MIDI.xml は Domino 向けファイルです。利用される場合は Domino\Module へ
 ファイルコピーして Domino 環境設定より選択利用下さい。
