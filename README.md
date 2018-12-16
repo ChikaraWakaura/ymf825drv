@@ -70,7 +70,7 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
     ymf825drv.c               新規
     fmasgn.h                  変更なし
     fmboard.h                 変更なし
-    fmif.h                    マクロ追加
+    fmif.h                    デファイン追加
     fmnote.h                  プロトタイプ宣言追加
     fmpart.h                  プロトタイプ宣言追加
     fmsd1.h                   プロトタイプ宣言追加
