@@ -101,8 +101,6 @@ libasound2-dev を必要とします。
 
 メイクと実行
 
-本リポジトリを展開します。
-
     $ cd ymf825drv
     $ make clean;make
     $ sudo ./ymf825drv -v
