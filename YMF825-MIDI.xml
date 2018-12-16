@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<ModuleData Name="YMF825-MIDI" Folder="" Priority="1" FileCreator="" FileVersion="1.00" WebSite="">
+	<RhythmTrackDefault Gate="1" />
+
+	<InstrumentList>
+		<Map Name="YMF825">
+			<PC Name="GrandPiano" PC="1">
+				<Bank Name="Grand Piano" />
+			</PC>
+			<PC Name="E.Piano" PC="2">
+				<Bank Name="Electric Piano" />
+			</PC>
+			<PC Name="TenorSax" PC="3">
+				<Bank Name="Tenor Sax" />
+			</PC>
+			<PC Name="PickBass" PC="4">
+				<Bank Name="Pick Bass" />
+			</PC>
+			<PC Name="TnklBell" PC="5">
+				<Bank Name="Tinkle Bell" />
+			</PC>
+			<PC Name="NewAgePd" PC="6">
+				<Bank Name="New Age Pad" />
+			</PC>
+			<PC Name="Rim Shot" PC="7">
+				<Bank Name="Harpsichord" />
+			</PC>
+			<PC Name="Castanet" PC="8">
+				<Bank Name="Harmonica" />
+			</PC>
+			<PC Name="GrandPiano" PC="9">
+				<Bank Name="Grand Piano" />
+			</PC>
+			<PC Name="E.Piano" PC="10">
+				<Bank Name="Electric Piano" />
+			</PC>
+			<PC Name="TenorSax" PC="11">
+				<Bank Name="Tenor Sax" />
+			</PC>
+			<PC Name="PickBass" PC="12">
+				<Bank Name="Pick Bass" />
+			</PC>
+			<PC Name="TnklBell" PC="13">
+				<Bank Name="Tinkle Bell" />
+			</PC>
+			<PC Name="NewAgePd" PC="14">
+				<Bank Name="New Age Pad" />
+			</PC>
+			<PC Name="Rim Shot" PC="15">
+				<Bank Name="Harpsichord" />
+			</PC>
+			<PC Name="Castanet" PC="16">
+				<Bank Name="Harmonica" />
+			</PC>
+		</Map>
+	</InstrumentList>
+
+	<ControlChangeMacroList>
+
+		<Folder Name="PerformEdit">
+
+			<CCM ID="130" Name="PitchBend" Color="#0fa806" Sync="Last">
+				<Value Min="-8192" Max="8191" Offset="8192" />
+				<Memo>音程を変化させます。</Memo>
+				<Data>@PB #VH #VL</Data>
+			</CCM>
+
+			<CCM ID="1" Name="Modulation" Color="#1c1cfb" Sync="Last">
+				<Value />
+				<Memo>音の揺らぐ深さを設定します。</Memo>
+				<Data>@CC 1 #VL</Data>
+			</CCM>
+
+			<CCM ID="11" Name="Expression" Color="#CA0000" Sync="Last">
+				<Value />
+				<Memo>パートの音量を設定します。主に演奏中の抑揚表現に使用します。</Memo>
+				<Data>@CC 11 #VL</Data>
+			</CCM>
+
+			<CCM ID="64" Name="Hold1">
+				<Value>
+					<Entry Label="Off" Value="0" />
+					<Entry Label="On" Value="127" />
+				</Value>
+				<Memo>音を持続させるかどうかを設定します。</Memo>
+				<Data>@CC 64 #VL</Data>
+			</CCM>
+
+		</Folder>
+
+		<Folder Name="PartEdit">
+
+			<CCM ID="7" Name="Part Level" Color="#CA0000" Sync="Last">
+				<Value Default="100" />
+				<Memo>パートの音量バランスを設定します。</Memo>
+				<Data>@CC 7 #VL</Data>
+			</CCM>
+
+		</Folder>
+
+		<Folder Name="Other">
+
+			<CCM ID="120" Name="AllSoundOff">
+				<Memo></Memo>
+				<Data>@CC 120 0</Data>
+			</CCM>
+
+			<CCM ID="121" Name="ResetAllController">
+				<Memo></Memo>
+				<Data>@CC 121 0</Data>
+			</CCM>
+
+			<CCM ID="123" Name="AllNoteOff">
+				<Memo></Memo>
+				<Data>@CC 123 0</Data>
+			</CCM>
+
+			<CCM ID="128" Name="Rest" Color="#aaaaaa">
+				<Memo>休符です。</Memo>
+			</CCM>
+
+		</Folder>
+
+	</ControlChangeMacroList>
+
+	<TemplateList>
+		<Template ID="0" Name="トラック初期化">
+			<Memo>トラック初期化用テンプレートです。</Memo>
+			<CC ID="7" Value="100" />
+			<CC ID="10" Value="0" />
+			<PC Mode="Auto" />
+			<CC ID="130" Value="0" />
+			<CC ID="1" Value="0" />
+			<CC ID="11" Value="127" />
+		</Template>
+	</TemplateList>
+
+	<DefaultData>
+		<Track Mode="Conductor">
+			<Mark Tick="0" Name="Setup" />
+			<Tempo Tick="0" Tempo="120.0" />
+			<Mark Tick="1920" Name="Start" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Name="Setup" Ch="1">
+			<CC Tick="0" ID="200" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="1" Current="1">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="2">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="3">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="4">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="5">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="6">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="7">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="8">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="9">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Name="Rhythm" Ch="10" Mode="Rhythm">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="11">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="12">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="13">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="14">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="15">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+		<Track Ch="16">
+			<Template ID="0" Tick="480" />
+			<EOT Tick="1920" />
+		</Track>
+	</DefaultData>
+
+</ModuleData>
