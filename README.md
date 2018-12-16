@@ -137,7 +137,7 @@ Ctrl + C で停止します。
 
     $ aplaymidi --port=128:0 hogehoge.mid
 
-#5. 応用編
+# 5. 応用編
 
 raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
 
