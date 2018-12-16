@@ -33,50 +33,51 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
 
 # 3. ソフト機能拡張及び変更について
 
-    16ch                      対応(ChNo.9 は非標準ドラムパート)
-    CC7                       MASTER VOL -> ChVol に変更
-    CC11                      対応
-    CC121                     対応
-    CC120                     対応
-    CC123                     対応
+|機能 |説明 |
+|:---:|:---|
+|16ch|機能追加(ChNo.9 は非標準ドラムパート)|
+|CC7|MASTER VOL -> ChVol に変更|
+|CC11|機能追加|
+|CC121|機能追加|
+|CC120|機能追加|
+|CC123|機能追加|
 
-    fmasgn.c                  変更なし
-    fmif.c
-      Fmdriver_init()         本タイミングへ Asgn_init() と Tone_init() を移動(CC121に関連)
-                              16ch 初期化処理へ変更
-      generateMidiCmd()       16ch 処理へ変更
-    fmnote.c
-      Note_damp()             16ch 化に伴いリンクリスト破壊後のリンクはまり対策
-      Note_chgChVol()         追加
-      Note_chgExpression()    追加
-    fmpart.c
-      Part_cc11()             追加
-      Part_init()             Asgn_init() と Tone_init() を削除(CC121に関連)
-      Part_cc()               CC7 変更, CC11,CC121,CC120,CC123 追加
-    fmsd1_raspi.c
-      writeSingle()           bcm2835_spi_transfern() へ変更
-      readSingle()            追加
-      writeBurst()            bcm2835_spi_transfern() へ変更
-      delayMs()               秒込みウェイト指定化へ変更
-      initSPI()               RST ピン出力定義追加
-      initSD1()               9,25 レジスタ書き込み定義見直しと変数化
-    fmtone.c                  変更なし
-    fmvoice.c
-      Fmvoice_keyon()         VoVOL 設定見直し , ChVol CC7 化 , Part_toneNumber() 設定見直し
-      Fmvoice_damp()          16ch 化に伴いリンクリスト破壊後のリンクはまり対策
-      Fmvoice_chgVibDpt()     XVB 設定見直し
-      Fmvoice_chgChVol()      CC7  対応(ChVol 利用のため CC11 とレジスタ共有)
-      Fmvoice_chgExpression() CC11 対応(ChVol 利用のため CC7  とレジスタ共有)
-    ymf825drv.c               新規
-    fmasgn.h                  変更なし
-    fmboard.h                 変更なし
-    fmif.h                    デファイン追加
-    fmnote.h                  プロトタイプ宣言追加
-    fmpart.h                  プロトタイプ宣言追加
-    fmsd1.h                   プロトタイプ宣言追加
-    fmtone.h                  変更なし
-    fmtype.h                  変更なし
-    fmvoice.h                 プロトタイプ宣言追加
+|ファイル名 |関数名 |説明 |
+|:---|:---|:---|
+|fmasgn.c| |変更なし|
+|fmif.c|Fmdriver_init()|本タイミングへ Asgn_init() と Tone_init() を移動(CC121に関連),16ch 初期化処理へ変更|
+|fmif.c|generateMidiCmd()|16ch 処理へ変更|
+|fmnote.c|Note_damp()|16ch 化に伴いリンクリスト破壊後のリンクはまり対策|
+|fmnote.c|Note_chgChVol()|追加|
+|fmnote.c|Note_chgExpression()|追加|
+|fmpart.c|Part_cc11()|追加|
+|fmpart.c|Part_init()|Asgn_init() と Tone_init() を削除(CC121に関連)|
+|fmpart.c|Part_cc()|CC7 変更, CC11,CC121,CC120,CC123 追加|
+|fmsd1_raspi.c|writeSingle()|bcm2835_spi_transfern() へ変更|
+|fmsd1_raspi.c|readSingle()|追加|
+|fmsd1_raspi.c|writeBurst()|bcm2835_spi_transfern() へ変更|
+|fmsd1_raspi.c|delayMs()|秒込みウェイト指定化へ変更|
+|fmsd1_raspi.c|initSPI()|RST ピン出力定義追加|
+|fmsd1_raspi.c|initSD1()|9,25 レジスタ書き込み定義見直しと変数化|
+|fmtone.c| |変更なし|
+|fmvoice.c|Fmvoice_keyon()|VoVOL 設定見直し , ChVol CC7 化 , Part_toneNumber() 設定見直し|
+|fmvoice.c|Fmvoice_damp()|16ch 化に伴いリンクリスト破壊後のリンクはまり対策|
+|fmvoice.c|Fmvoice_chgVibDpt()|XVB 設定見直し|
+|fmvoice.c|Fmvoice_chgChVol()|CC7  対応(ChVol 利用のため CC11 とレジスタ共有)|
+|fmvoice.c|Fmvoice_chgExpression()|CC11 対応(ChVol 利用のため CC7  とレジスタ共有)|
+|ymf825drv.c| |新規|
+
+|ファイル名 |説明 |
+|:---|:---|
+|fmasgn.h|変更なし|
+|fmboard.h|変更なし|
+|fmif.h|デファイン追加|
+|fmnote.h|プロトタイプ宣言追加|
+|fmpart.h|プロトタイプ宣言追加|
+|fmsd1.h|プロトタイプ宣言追加|
+|fmtone.h|変更なし|
+|fmtype.h|変更なし|
+|fmvoice.h|プロトタイプ宣言追加|
 
 # 4. 動作確認
 
