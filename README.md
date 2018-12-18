@@ -1,6 +1,6 @@
 # 1. 概要
 
-本家 sample2 の 1ch MIDI ドライバをRaspberry PI ALSA 16ch MIDI ドライバ(ユーザランド)化するものです。  
+本家 sample2 の 1ch MIDI ドライバを Raspberry PI ALSA 16ch MIDI ドライバ(ユーザランド)化するものです。  
 標準ドラムパート MIDI ChNo.9(0基点) は通常音色です。
 
 # 2. ハード準備
@@ -31,7 +31,7 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
 なので RCA 端子より疑似ステレオ出力としました。
 ![通電全景](/img/P_20181215_181214.jpg)
 
-小生は Raspberry PI 3 model Bで実験しました。
+小生は Raspberry PI 3 model B で実験しました。
 
    $ uname -a
    Linux raspi-002 4.14.84-v7+ #1169 SMP Thu Nov 29 16:20:43 GMT 2018 armv7l GNU/Linux
