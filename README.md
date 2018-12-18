@@ -86,7 +86,7 @@ SPI を必要とします。
     $ cat /boot/config.txt | grep spi
     dtparam=spi=on
 
-libbcm2835 を必要とします。
+[libbcm2835](https://www.airspayce.com/mikem/bcm2835/) を必要とします。
 
     $ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.57.tar.gz
     $ tar zxvf bcm2835-1.57.tar.gz
@@ -142,7 +142,7 @@ Ctrl + C で停止します。
 
 # 5. 応用編
 
-raveloxmidi & rtpMIDI 利用の場合は以下のようになります。
+[raveloxmidi](https://github.com/ravelox/pimidi/tree/master/raveloxmidi) & [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html) 利用の場合は以下のようになります。
 
     $ sudo modprobe snd-virmidi
     $ amidi -l
@@ -194,7 +194,7 @@ raveloxmidi ファイル指定実行
 
     $ raveloxmidi -N -c ~/.config/raveloxmidi-vmidi.conf
 
-これで rtpMIDI が動作する環境より任意の MIDI 再生ソフトからの MIDI 再生が可能になり  
+これで [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html) が動作する環境より任意の MIDI 再生ソフトからの MIDI 再生が可能になり  
 YMF825 MIDI へ MIDI 出力可能となります。
 
 # 6. その他
