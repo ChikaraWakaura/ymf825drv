@@ -33,8 +33,8 @@ ymf825board に付属しているミニジャックは 100 回抜き差し試験
 
 小生は Raspberry PI 3 model B で実験しました。
 
-   $ uname -a
-   Linux raspi-002 4.14.84-v7+ #1169 SMP Thu Nov 29 16:20:43 GMT 2018 armv7l GNU/Linux
+   $ uname -a  
+   Linux raspi-002 4.14.84-v7+ #1169 SMP Thu Nov 29 16:20:43 GMT 2018 armv7l GNU/Linux  
 
 # 3. ソフト機能拡張及び変更について
 
